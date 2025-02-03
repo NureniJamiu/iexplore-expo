@@ -1,15 +1,14 @@
-import { Box, Divider, HStack, ScrollView, Text } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import FilterButton from "@/components/custom//buttons/FilterButton";
-import EventCard from "@/components/custom//cards/EventCard";
-import TopSpotCard from "@/components/custom//cards/TopSpotCard";
-import VenueCard from "@/components/custom//cards/VenueCard";
-import FilterByCategory from "@/components/custom//filter-items/FilterByCategory";
-import FilterByRating from "@/components/custom//filter-items/FilterByRating";
-import DashboardHeader from "@/components/custom//headers/DashboardHeader";
-import SectionHeader from "@/components/custom//headers/SectionHeader";
-import CustomSearchInput from "@/components/custom//inputs/CustomSearchInput";
+import FilterButton from "@/components/custom/buttons/FilterButton";
+import EventCard from "@/components/custom/cards/EventCard";
+import TopSpotCard from "@/components/custom/cards/TopSpotCard";
+import VenueCard from "@/components/custom/cards/VenueCard";
+import FilterByCategory from "@/components/custom/filter-items/FilterByCategory";
+import FilterByRating from "@/components/custom/filter-items/FilterByRating";
+import DashboardHeader from "@/components/custom/headers/DashboardHeader";
+import SectionHeader from "@/components/custom/headers/SectionHeader";
+import CustomSearchInput from "@/components/custom/inputs/CustomSearchInput";
 import { apiGet } from "@/lib/api/api-service";
 import { url } from "@/lib/api/url";
 
@@ -32,8 +31,6 @@ export default function HomeScreen() {
         setVenues(response);
       } catch (err) {
         console.log(err);
-      } finally {
-        // setLoading(false);
       }
     };
     fetchSpots();
@@ -57,19 +54,13 @@ export default function HomeScreen() {
   };
 
   return (
-    <Box bg="$background" flex={1}>
+    <div className="bg-background flex flex-col min-h-screen">
       <DashboardHeader />
-      <Box px="$4">
+      <div className="px-4">
         <CustomSearchInput placeholder="Search for..." />
-      </Box>
-      <ScrollView>
-        <Box
-          mt="$1"
-          px="$4"
-          gap="$2"
-          flexDirection="row"
-          justifyContent="space-between"
-        >
+      </div>
+      <div className="overflow-auto">
+        <div className="mt-1 px-4 flex gap-2 justify-between">
           <FilterButton
             title="Category"
             active={isActive.category}
@@ -80,102 +71,75 @@ export default function HomeScreen() {
             active={isActive.rating}
             onPress={handleRatingPress}
           />
-        </Box>
+        </div>
         {isActive.category && <FilterByCategory />}
         {isActive.rating && <FilterByRating />}
-        <Box px={"$4"}>
-          <Box>
-            <SectionHeader />
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <VenueCard name="Club 52" />
-              <VenueCard name="Club Quilox" image={CLUB_TWO} />
-              <VenueCard />
-              <VenueCard />
-            </ScrollView>
-          </Box>
-          <Divider h={1} bg="$secondary" mt={"$6"} />
-        </Box>
-        <Box px={"$4"}>
-          <Box>
-            <SectionHeader title="Bars & Pubs" />
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <VenueCard image={HOTEL_ONE} />
-              <VenueCard image={HOTEL_TWO} />
-              <VenueCard image={HOTEL_ONE} />
-              <VenueCard image={HOTEL_TWO} />
-            </ScrollView>
-          </Box>
-          <Divider h={1} bg="$secondary" mt={"$6"} />
-        </Box>
-        <Box px={"$4"}>
-          <Text
-            mb="$2"
-            fontSize="$xl"
-            lineHeight="$2xl"
-            color="$textSecondary"
-            fontWeight="800"
-          >
+        <div className="px-4">
+          <SectionHeader />
+          <div className="flex overflow-x-auto space-x-4">
+            <VenueCard name="Club 52" />
+            <VenueCard name="Club Quilox" image={CLUB_TWO} />
+            <VenueCard />
+            <VenueCard />
+          </div>
+          <hr className="h-1 bg-secondary mt-6" />
+        </div>
+        <div className="px-4">
+          <SectionHeader title="Bars & Pubs" />
+          <div className="flex overflow-x-auto space-x-4">
+            <VenueCard image={HOTEL_ONE} />
+            <VenueCard image={HOTEL_TWO} />
+            <VenueCard image={HOTEL_ONE} />
+            <VenueCard image={HOTEL_TWO} />
+          </div>
+          <hr className="h-1 bg-secondary mt-6" />
+        </div>
+        <div className="px-4">
+          <h2 className="mb-2 text-xl font-extrabold text-textSecondary">
             Recommended events
-          </Text>
-          <Box>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <EventCard image={CLUB_THREE} />
-              <EventCard title="MC party jump off" location="Club Quilox" />
-              <EventCard image={CLUB_ONE} />
-            </ScrollView>
-          </Box>
-          <Divider h={1} bg="$secondary" mt={"$6"} />
-        </Box>
-        <Box px={"$4"}>
-          <Box>
-            <SectionHeader title="Hotels" />
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <VenueCard name="Claintro Signature" image={HOTEL_ONE} />
-              <VenueCard name="Cactus Restaurant" image={HOTEL_TWO} />
-              <VenueCard />
-              <VenueCard />
-            </ScrollView>
-            <Divider h={1} bg="$secondary" mt={"$6"} />
-          </Box>
-        </Box>
-
-        <Box px={"$4"}>
-          <Box>
-            <SectionHeader title="Restaurants" />
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <VenueCard name="Claintro Signature" image={RESTAURANT_ONE} />
-              <VenueCard name="Cactus Restaurant" image={RESTAURANT_TWO} />
-              <VenueCard />
-              <VenueCard />
-            </ScrollView>
-            <Divider h={1} bg="$secondary" mt={"$6"} />
-          </Box>
-        </Box>
-        <Box px="$4">
-          <Text
-            fontSize="$xl"
-            lineHeight="$2xl"
-            color="$textSecondary"
-            fontWeight="800"
-          >
+          </h2>
+          <div className="flex overflow-x-auto space-x-4">
+            <EventCard image={CLUB_THREE} />
+            <EventCard title="MC party jump off" location="Club Quilox" />
+            <EventCard image={CLUB_ONE} />
+          </div>
+          <hr className="h-1 bg-secondary mt-6" />
+        </div>
+        <div className="px-4">
+          <SectionHeader title="Hotels" />
+          <div className="flex overflow-x-auto space-x-4">
+            <VenueCard name="Claintro Signature" image={HOTEL_ONE} />
+            <VenueCard name="Cactus Restaurant" image={HOTEL_TWO} />
+            <VenueCard />
+            <VenueCard />
+          </div>
+          <hr className="h-1 bg-secondary mt-6" />
+        </div>
+        <div className="px-4">
+          <SectionHeader title="Restaurants" />
+          <div className="flex overflow-x-auto space-x-4">
+            <VenueCard name="Claintro Signature" image={RESTAURANT_ONE} />
+            <VenueCard name="Cactus Restaurant" image={RESTAURANT_TWO} />
+            <VenueCard />
+            <VenueCard />
+          </div>
+          <hr className="h-1 bg-secondary mt-6" />
+        </div>
+        <div className="px-4">
+          <h2 className="text-xl font-extrabold text-textSecondary">
             Iexplore spots this week
-          </Text>
-          <Box my="$5" gap="$3">
-            <HStack
-              gap="$3"
-              w="$full"
-              flexWrap="wrap"
-              justifyContent="space-between"
-            >
+          </h2>
+          <div className="my-5 gap-3">
+            <div className="flex flex-wrap gap-3 w-full justify-between">
               <TopSpotCard number="1" />
               <TopSpotCard number="2" image={HOTEL_TWO} />
               <TopSpotCard number="3" image={RESTAURANT_TWO} />
               <TopSpotCard number="4" image={CLUB_ONE} />
               <TopSpotCard number="5" image={RESTAURANT_TWO} />
-            </HStack>
-          </Box>
-        </Box>
-      </ScrollView>
-    </Box>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,21 +1,12 @@
 import { Tabs } from "expo-router";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
-import { Box, Text } from "@gluestack-ui/themed";
+import { Box } from "@/components/ui/box";
+import { Text } from "@/components/ui/text";
 
 function CustomTabBar({ state, navigation, descriptors }) {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        height: 78,
-        alignItems: "center",
-        backgroundColor: "#000000",
-        borderTopWidth: 0.5,
-        borderTopColor: "#333333",
-      }}
-    >
+    <View className="flex-row h-20 items-center bg-black border-t border-gray-800">
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const isFocused = state.index === index;
@@ -72,12 +63,13 @@ function CustomTabBar({ state, navigation, descriptors }) {
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+            className="flex-1 justify-center items-center"
           >
-            <Box marginBottom={8}>{renderIcon(isFocused)}</Box>
+            <Box className="mb-2">{renderIcon(isFocused)}</Box>
             <Text
-              color={isFocused ? "$textSecondary" : "$textPrimary"}
-              fontSize={"$xs"}
+              className={
+                isFocused ? "text-gray-400 text-xs" : "text-white text-xs"
+              }
             >
               {renderLabel()}
             </Text>

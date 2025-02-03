@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Box, Divider, HStack, Text } from "@gluestack-ui/themed";
 import { ImageBackground, StyleSheet, TouchableOpacity } from "react-native";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 
@@ -10,6 +9,8 @@ import FlatButton from "@/components/custom/buttons/FlatButton";
 import ProgressBar from "@/components/custom/progress/ProgressBar";
 import SocialButton from "@/components/custom/buttons/SocialButton";
 import SafePageContainer from "@/components/custom/containers/SafePageContainer";
+import Divider from "@/components/ui/Divider";
+import Text from "@/components/ui/Text";
 import { useRouter } from "expo-router";
 
 const image1 = require("@/assets/images/bar1.jpeg");
@@ -25,17 +26,12 @@ export default function OnboardingScreen() {
 
   return (
     <SafePageContainer>
-      <Box flex={1} bg="$background">
-        <Box alignItems="center" pt={"$2"}>
+      <div className="flex-1 bg-background">
+        <div className="flex items-center pt-2">
           <HeaderLogo />
-        </Box>
+        </div>
 
-        <HStack
-          paddingHorizontal={scale(12)}
-          justifyContent="space-between"
-          mt={verticalScale(15)}
-          mb={verticalScale(8)}
-        >
+        <div className="flex flex-row justify-between px-[12px] mt-[15px] mb-[8px]">
           <ProgressBar
             length={scale(107)}
             start={progressOneStart}
@@ -53,60 +49,33 @@ export default function OnboardingScreen() {
             }}
           />
           <ProgressBar length={scale(107)} start={progressThreeStart} />
-        </HStack>
+        </div>
         {progressStep === 1 ? (
-          <Box h={verticalScale(330)}>
+          <div className="h-[330px]">
             <ImageBackground source={image1} style={styles.imgContainer}>
-              <Text
-                color="$textSecondary"
-                position="absolute"
-                bottom={0}
-                fontSize={moderateScale(26)}
-                fontWeight="700"
-                lineHeight={36}
-                width={"90%"}
-                ml={scale(16)}
-              >
+              <Text className="absolute bottom-0 text-secondary text-[26px] font-bold leading-[36px] w-[90%] ml-[16px]">
                 Experience the best of your city nightlife
               </Text>
             </ImageBackground>
-          </Box>
+          </div>
         ) : progressStep === 2 ? (
-          <Box h={verticalScale(330)}>
+          <div className="h-[330px]">
             <ImageBackground source={image2} style={styles.imgContainer}>
-              <Text
-                color="$textSecondary"
-                position="absolute"
-                bottom={0}
-                fontSize={moderateScale(26)}
-                fontWeight="700"
-                lineHeight={36}
-                width={"90%"}
-                ml={scale(16)}
-              >
+              <Text className="absolute bottom-0 text-secondary text-[26px] font-bold leading-[36px] w-[90%] ml-[16px]">
                 Claim drinks reserved for you with ease
               </Text>
             </ImageBackground>
-          </Box>
+          </div>
         ) : (
-          <Box h={verticalScale(330)}>
+          <div className="h-[330px]">
             <ImageBackground source={image3} style={styles.imgContainer}>
-              <Text
-                color="$textSecondary"
-                position="absolute"
-                bottom={0}
-                fontSize={moderateScale(26)}
-                fontWeight="700"
-                lineHeight={36}
-                width={"90%"}
-                ml={scale(16)}
-              >
+              <Text className="absolute bottom-0 text-secondary text-[26px] font-bold leading-[36px] w-[90%] ml-[16px]">
                 Share memories with your friends on iexplore
               </Text>
             </ImageBackground>
-          </Box>
+          </div>
         )}
-        <Box>
+        <div>
           <SocialButton
             title="Continue with Google"
             icon={googleIcon}
@@ -117,32 +86,27 @@ export default function OnboardingScreen() {
             icon={appleIcon}
             onPress={() => console.log("yoooo")}
           />
-        </Box>
-        <HStack alignItems="center" justifyContent="space-around">
-          <Divider w={scale(140)} />
-          <Text color="$textSecondary">or</Text>
-          <Divider w={scale(140)} />
-        </HStack>
-        <Box paddingHorizontal={scale(24)}>
+        </div>
+        <div className="flex flex-row items-center justify-around">
+          <Divider className="w-[140px]" />
+          <Text className="text-secondary">or</Text>
+          <Divider className="w-[140px]" />
+        </div>
+        <div className="px-[24px]">
           <FlatButton
             title="I'm new to iExplore"
             onPress={() => router.replace("/(auth)/signup")}
           />
-        </Box>
-        <HStack justifyContent="center" mt={"$2.5"}>
-          <Text color="$textPrimary">Using a different account?</Text>
+        </div>
+        <div className="flex flex-row justify-center mt-2.5">
+          <Text className="text-primary">Using a different account?</Text>
           <TouchableOpacity onPress={() => router.replace("/(auth)/login")}>
-            <Text
-              ml={scale(8)}
-              textDecorationLine="underline"
-              fontWeight="600"
-              color="$textSecondary"
-            >
+            <Text className="ml-[8px] underline font-semibold text-secondary">
               Login
             </Text>
           </TouchableOpacity>
-        </HStack>
-      </Box>
+        </div>
+      </div>
     </SafePageContainer>
   );
 }
