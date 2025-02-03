@@ -1,15 +1,9 @@
+import moment from "moment";
 import { Box } from "@/components/ui/box";
 import { Text } from "@/components/ui/text";
 import { useNavigation } from "@react-navigation/native";
-import moment from "moment";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import {
-  moderateScale,
-  moderateVerticalScale,
-  scale,
-  verticalScale,
-} from "react-native-size-matters";
 import FlatButton from "@/components/custom/buttons/FlatButton";
 import SafePageContainer from "@/components/custom/containers/SafePageContainer";
 import GlobalHeader from "@/components/custom/headers/GlobalHeader";

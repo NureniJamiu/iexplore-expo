@@ -1,4 +1,5 @@
-import { Box, Text } from "@gluestack-ui/themed";
+import { Box } from "@/components/ui/box";
+import { Text } from "@/components/ui/text";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { ImageBackground, StyleSheet } from "react-native";
@@ -16,60 +17,38 @@ const confetti = require("@/assets/images/confetti-gold.png");
 export default function CongratulationsScreen() {
   const navigation = useNavigation();
   return (
-    <Box
-      flex={1}
-      bg="$background"
-      position="relative"
-      alignItems="center"
-      justifyContent="center"
-    >
+    <Box className="flex-1 relative items-center justify-center bg-background">
       <ImageBackground source={confetti} style={styles.imageBackground} />
-      <Box flex={1} w="100%">
+      <Box className="flex-1 w-full">
         <Box
-          py="$3"
-          bg="$background"
-          opacity="$90"
-          justifyContent="flex-end"
-          h={moderateVerticalScale(150)}
-          w="$100%"
+          className="py-3 bg-background opacity-90 justify-end"
+          style={{ height: moderateVerticalScale(150) }}
         >
           <GlobalHeader showBackButton={false} />
           <Text
-            my={"$5"}
-            fontWeight="$bold"
-            color="$textSecondary"
-            fontSize={moderateScale(24)}
-            lineHeight={"$2xl"}
-            textAlign="center"
+            className="my-5 font-bold text-secondary text-center"
+            style={{
+              fontSize: moderateScale(24),
+              lineHeight: moderateScale(32),
+            }}
           >
             Welcome
           </Text>
         </Box>
 
-        <Box alignItems="center" justifyContent="center" my="$16">
-          <Box
-            w={"$72"}
-            py={"$5"}
-            px={"$9"}
-            opacity="$80"
-            bg="$background"
-            alignItems="center"
-            justifyContent="center"
-            borderWidth={1}
-            borderColor="#4D4D4D"
-            borderRadius={"$xl"}
-          >
+        <Box className="items-center justify-center my-16">
+          <Box className="w-72 py-5 px-9 opacity-80 bg-background items-center justify-center border border-gray-700 rounded-xl">
             <CongratsIcon />
-            <Box my={"$5"} alignItems="center">
-              <Text textAlign="center" color="$textPrimary" fontSize={"$md"}>
+            <Box className="my-5 items-center">
+              <Text className="text-center text-primary text-md">
                 Hooray! You're now an
               </Text>
-              <Text color="$textPrimary">explorer.</Text>
+              <Text className="text-primary">explorer.</Text>
             </Box>
           </Box>
         </Box>
 
-        <Box px="$10">
+        <Box className="px-10">
           <FlatButton
             title="Let's go"
             onPress={() =>

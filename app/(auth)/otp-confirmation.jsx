@@ -1,16 +1,11 @@
-import {
-  Box,
-  HStack,
-  KeyboardAvoidingView,
-  Text,
-  useToast,
-} from "@gluestack-ui/themed";
+import { Box } from "@/components/ui/box";
+import { HStack } from "@/components/ui/hstack";
+import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
+import { Text } from "@/components/ui/text";
+import { useToast } from "@/components/ui/use-toast";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { StyleSheet } from "react-native";
-import { moderateScale } from "react-native-size-matters";
-// import SmoothPinCodeInput from "react-native-smooth-pincode-input";
 import SafePageContainer from "@/components/custom/containers/SafePageContainer";
 import GlobalHeader from "@/components/custom/headers/GlobalHeader";
 import OTPCountdownTimer from "@/components/custom/timer/OTPCountdownTimer";
@@ -31,11 +26,7 @@ export default function OtpConfirmationScreen({ route }) {
     error,
   } = useSelector((state) => state.auth);
 
-  // const auth = useSelector(state => state.auth);
-
   const { values } = route.params;
-
-  // console.log("USER FROM REDUX: ", auth)
 
   const credentials = { email, password: values.password };
 
@@ -60,9 +51,6 @@ export default function OtpConfirmationScreen({ route }) {
       await dispatch(verifyEmailOtp(code));
       await dispatch(fetchToken(credentials));
 
-      // console.log('TOKEN RESPONSE:', access);
-      // const token = await AsyncStorage.setItem("auth-token", response.authToken)
-
       toast.show({
         type: "success",
         text1: "Congratulations",
@@ -83,31 +71,25 @@ export default function OtpConfirmationScreen({ route }) {
 
   return (
     <SafePageContainer>
-      <Box flex={1} bg="$background" pt="$2">
+      <Box className="flex-1 bg-background pt-2">
         <GlobalHeader />
-        <Box marginVertical={"$5"}>
-          <Text
-            color="$textSecondary"
-            fontSize={moderateScale(24)}
-            textAlign="center"
-            fontWeight="$semibold"
-            lineHeight={"$2xl"}
-          >
+        <Box className="my-5">
+          <Text className="text-textSecondary text-center text-xl font-semibold leading-8">
             Confirm OTP
           </Text>
         </Box>
         <KeyboardAvoidingView
           behavior="padding"
           keyboardVerticalOffset={30}
-          style={styles.container}
+          className="flex-1"
         >
-          <Box px="$4" my="$6" justifyContent="center" alignItems="center">
-            <Text color="$textPrimary" textAlign="center" w="85%">
+          <Box className="px-4 my-6 justify-center items-center">
+            <Text className="text-textPrimary text-center w-11/12">
               To confirm your email address, please enter the OTP we sent to{" "}
-              <Text color="$textSecondary">{email}</Text>
+              <Text className="text-textSecondary">{email}</Text>
             </Text>
           </Box>
-          <Box my={3} px={8}>
+          <Box className="my-3 px-8">
             {/* <SmoothPinCodeInput
               codeLength={6}
               cellStyle={styles.cellStyle}
@@ -119,7 +101,7 @@ export default function OtpConfirmationScreen({ route }) {
               containerStyle={styles.containerStyle}
             /> */}
           </Box>
-          <HStack alignItems="center" justifyContent="center" my={48}>
+          <HStack className="items-center justify-center my-12">
             <OTPCountdownTimer email={email} />
           </HStack>
         </KeyboardAvoidingView>
@@ -127,30 +109,3 @@ export default function OtpConfirmationScreen({ route }) {
     </SafePageContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  cellStyle: {
-    borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: "#3C3C3C",
-    height: 60,
-    width: 50,
-  },
-  cellStyleFocused: {
-    backgroundColor: "#FFFFFF",
-  },
-  textStyle: {
-    fontSize: 32,
-    color: "#FFC000",
-    fontWeight: "600",
-  },
-  textStyleFocused: {
-    color: "crimson",
-  },
-  containerStyle: {
-    alignSelf: "center",
-  },
-});

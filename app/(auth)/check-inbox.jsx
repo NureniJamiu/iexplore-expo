@@ -1,7 +1,8 @@
-import { Box, Button, ButtonText, Text } from "@gluestack-ui/themed";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Text } from "@/components/ui/text";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { moderateScale, verticalScale } from "react-native-size-matters";
 import SafePageContainer from "@/components/custom/containers/SafePageContainer";
 import AuthHeader from "@/components/custom/headers/AuthHeader";
@@ -13,63 +14,38 @@ export default function CheckInboxScreen() {
   return (
     <SafePageContainer>
       <AuthHeader />
-      <Box marginVertical={"$12"}>
+      <Box className="my-12">
         <Text
-          color="$textSecondary"
-          fontSize={moderateScale(32)}
-          textAlign="center"
-          fontWeight="$semibold"
-          lineHeight={"$2xl"}
+          className="text-textSecondary text-center font-semibold leading-2xl"
+          style={{ fontSize: moderateScale(32) }}
         >
           Check your inbox
         </Text>
         <Text
-          mx={"$16"}
-          mt={"$2"}
-          color="$textSecondary"
-          fontSize={moderateScale(16)}
-          textAlign="center"
-          fontWeight="$semibold"
-          lineHeight={"$md"}
+          className="mx-16 mt-2 text-textSecondary text-center font-semibold leading-md"
+          style={{ fontSize: moderateScale(16) }}
         >
           We’ve sent a code to {email}
         </Text>
       </Box>
-      <Box px={"$10"} mt={verticalScale(100)}>
-        <Button
-          variant="solid"
-          action="primary"
-          w={"$full"}
-          h={verticalScale(50)}
-          alignSelf="center"
-          backgroundColor="$primary"
-          borderRadius={"$md"}
-          marginVertical={"$3"}
-          $active-bg="$orange200"
-        >
-          <ButtonText color="$textTertiary">Open email app</ButtonText>
+      <Box className="px-10 mt-[100px]">
+        <Button className="w-full h-[50px] self-center bg-primary rounded-md my-3 active:bg-orange-200">
+          <ButtonText className="text-textTertiary">Open email app</ButtonText>
         </Button>
         <Button
-          variant="outline"
-          action="primary"
-          w={"$full"}
-          h={verticalScale(50)}
-          alignSelf="center"
-          borderColor="$primary"
-          borderRadius={"$md"}
-          marginVertical={"$3"}
-          $active-h={verticalScale(49.5)}
+          className="w-full h-[50px] self-center border border-primary rounded-md my-3"
+          style={{ height: verticalScale(49.5) }}
           onPress={() => {
             navigation.navigate(SCREENS.auth.resetPasswordOtp, {
               reset: true,
             });
           }}
         >
-          <ButtonText color="$textSecondary">Enter code manually</ButtonText>
+          <ButtonText className="text-textSecondary">
+            Enter code manually
+          </ButtonText>
         </Button>
       </Box>
     </SafePageContainer>
   );
 }
-
-const styles = StyleSheet.create({});

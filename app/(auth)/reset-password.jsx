@@ -1,8 +1,8 @@
-import { useFormik } from "formik";
 import React, { useState } from "react";
-import { Box, Text } from "@gluestack-ui/themed";
+import { useFormik } from "formik";
+import { Box, Text } from "@/components/ui/box";
 import { useNavigation } from "@react-navigation/native";
-import { moderateScale, scale } from "react-native-size-matters";
+import { scale } from "react-native-size-matters";
 
 import { url } from "@/lib/api/url";
 import { apiPost } from "@/lib/api/api-service";
@@ -30,7 +30,6 @@ export default function ResetPasswordScreen() {
           new_password: values.password,
           confirm_new_password: values.retypePassword,
         });
-        // console.log(response);
         navigation.navigate(SCREENS.auth.changedPassword);
       } catch (error) {
         console.log("Error resetting password:", error);
@@ -40,34 +39,20 @@ export default function ResetPasswordScreen() {
     },
     enableReinitialize: true,
   });
+
   return (
     <SafePageContainer>
       <AuthHeader />
-      <Box marginVertical={"$12"}>
-        <Text
-          color="$textSecondary"
-          fontSize={moderateScale(32)}
-          textAlign="center"
-          fontWeight="$semibold"
-          lineHeight={"$2xl"}
-        >
+      <Box className="my-12">
+        <Text className="text-secondary text-3xl text-center font-semibold leading-2xl">
           Reset password
         </Text>
-        <Text
-          mx={"$20"}
-          mt={"$2"}
-          color="$textSecondary"
-          fontSize={moderateScale(16)}
-          textAlign="center"
-          fontWeight="$semibold"
-          lineHeight={"$md"}
-        >
+        <Text className="mx-20 mt-2 text-secondary text-base text-center font-semibold leading-md">
           Create a new password you’ll easily remember
         </Text>
       </Box>
       <CustomFormBox ph={scale(16)}>
         <CustomInput
-          type="text"
           label="Password"
           onChangeText={formik.handleChange("password")}
           onBlur={formik.handleBlur("password")}
@@ -77,7 +62,6 @@ export default function ResetPasswordScreen() {
           textContentType="oneTimeCode"
         />
         <CustomInput
-          type="text"
           label="Re-type password"
           onChangeText={formik.handleChange("retypePassword")}
           onBlur={formik.handleBlur("retypePassword")}

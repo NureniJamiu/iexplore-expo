@@ -1,9 +1,10 @@
-import { Box, HStack, Text } from "@gluestack-ui/themed";
+import { Box } from "@/components/ui/box";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
 import { useNavigation } from "@react-navigation/native";
 import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Alert, TouchableOpacity } from "react-native";
-import { moderateScale, scale } from "react-native-size-matters";
 import { apiPost } from "@/lib/api/api-service";
 import { url } from "@/lib/api/url";
 import FlatButton from "@/components/custom/buttons/FlatButton";
@@ -50,31 +51,17 @@ export default function ForgotPasswordScreen() {
 
   return (
     <SafePageContainer>
-      <Box flex={1} bg="$background">
+      <Box className="flex-1 bg-background">
         <AuthHeader />
-        <Box marginVertical={"$12"}>
-          <Text
-            color="$textSecondary"
-            fontSize={moderateScale(32)}
-            textAlign="center"
-            fontWeight="$semibold"
-            lineHeight={"$2xl"}
-          >
+        <Box className="my-12">
+          <Text className="text-textSecondary text-center text-2xl font-semibold leading-8">
             Forgot Password?
           </Text>
-          <Text
-            mx={"$16"}
-            mt={"$2"}
-            color="$textPrimary"
-            fontSize={moderateScale(15)}
-            textAlign="center"
-            fontWeight="$semibold"
-            lineHeight={"$md"}
-          >
+          <Text className="mx-16 mt-2 text-textPrimary text-sm text-center font-semibold leading-md">
             Please enter the email associated with your account
           </Text>
         </Box>
-        <Box px={"$4"}>
+        <Box className="px-4">
           <CustomInput
             keyboardType="email-address"
             label="Email"
@@ -83,7 +70,7 @@ export default function ForgotPasswordScreen() {
             value={formik.values.email}
             error={formik.touched.email && formik.errors.email}
           />
-          <Box mt={"$16"}>
+          <Box className="mt-16">
             <FlatButton
               title={loading ? "Sending..." : "Send Code"}
               onPress={formik.handleSubmit}
@@ -91,17 +78,12 @@ export default function ForgotPasswordScreen() {
             />
           </Box>
         </Box>
-        <HStack justifyContent="center" mt={"$24"}>
-          <Text color="$textPrimary">Remember password?</Text>
+        <HStack className="justify-center mt-24">
+          <Text className="text-textPrimary">Remember password?</Text>
           <TouchableOpacity
             onPress={() => navigation.navigate(SCREENS.auth.login)}
           >
-            <Text
-              ml={scale(8)}
-              textDecorationLine="underline"
-              fontWeight="600"
-              color="$textSecondary"
-            >
+            <Text className="ml-2 text-textSecondary underline font-semibold">
               Login
             </Text>
           </TouchableOpacity>

@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, HStack, Text } from "@gluestack-ui/themed";
+import { Box } from "@/components/ui/box";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
 import { useFormik } from "formik";
 import { TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import FlatButton from "@/components/custom/buttons/FlatButton";
 import CustomFormBox from "@/components/custom/containers/CustomFormBox";
 import SafePageContainer from "@/components/custom/containers/SafePageContainer";
@@ -46,20 +47,14 @@ export default function LoginScreen() {
 
   return (
     <SafePageContainer>
-      <Box bg="$background" flex={1} pt="$2">
+      <Box className="bg-background flex-1 pt-2">
         <GlobalHeader />
-        <Box marginVertical="$5">
-          <Text
-            color="$textSecondary"
-            fontSize={moderateScale(24)}
-            textAlign="center"
-            fontWeight="$semibold"
-            lineHeight="$2xl"
-          >
+        <Box className="my-5">
+          <Text className="text-textSecondary text-center text-xl font-semibold leading-8">
             Login
           </Text>
         </Box>
-        <CustomFormBox h={verticalScale(400)} ph={scale(16)}>
+        <CustomFormBox className="h-400 px-4">
           <CustomInput
             keyboardType="email-address"
             label="Username or Email"
@@ -79,15 +74,15 @@ export default function LoginScreen() {
             value={formik.values.password}
             error={formik.touched.password && formik.errors.password}
           />
-          <Box mt={0} justifyContent="flex-end" alignItems="flex-end">
+          <Box className="mt-0 justify-end items-end">
             <TouchableOpacity
               onPress={() => router.replace("/(auth)/forgot-password")}
             >
-              <Text color="$textPrimary">Forgot password</Text>
+              <Text className="text-textPrimary">Forgot password</Text>
             </TouchableOpacity>
           </Box>
 
-          <Box mt="$64">
+          <Box className="mt-64">
             <FlatButton
               isLoading={loading}
               disabled={loading || !formik.isValid}
@@ -97,15 +92,10 @@ export default function LoginScreen() {
           </Box>
         </CustomFormBox>
 
-        <HStack justifyContent="center" mt="$24">
-          <Text color="$textPrimary">Don't have an account?</Text>
+        <HStack className="justify-center mt-24">
+          <Text className="text-textPrimary">Don't have an account?</Text>
           <TouchableOpacity onPress={() => router.replace("/(auth)/signup")}>
-            <Text
-              ml={scale(8)}
-              textDecorationLine="underline"
-              fontWeight="600"
-              color="$textSecondary"
-            >
+            <Text className="ml-2 text-textSecondary underline font-semibold">
               Sign up
             </Text>
           </TouchableOpacity>

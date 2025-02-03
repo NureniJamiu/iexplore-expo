@@ -1,31 +1,19 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Box } from "@gluestack-ui/themed";
-import { Text } from "@gluestack-ui/themed";
+import { Box } from "@/components/ui/box";
+import { Text } from "@/components/ui/text";
 import FlatButton from "@/components/custom/buttons/FlatButton";
 import { ShieldIcon } from "@/assets/svg/ShieldIcon";
 
 export default function PasswordChangedScreen({ navigation }) {
   return (
-    <Box justifyContent="center" alignItems="center" flex={1} bg="$background">
-      <Box px={"$10"} pb={"$7"} justifyContent="center" alignItems="center">
+    <Box className="flex-1 justify-center items-center bg-background">
+      <Box className="px-10 pb-7 justify-center items-center">
         <ShieldIcon />
-        <Text
-          my={"$5"}
-          fontWeight="$semibold"
-          color="$textSecondary"
-          fontSize={"$3xl"}
-          lineHeight={"$2xl"}
-          textAlign="center"
-        >
+        <Text className="my-5 font-semibold text-textSecondary text-3xl leading-8 text-center">
           Password changed
         </Text>
-        <Text
-          textAlign="center"
-          color="$textSecondary"
-          fontSize={"$md"}
-          mb={"$10"}
-        >
+        <Text className="text-center text-textSecondary text-md mb-10">
           Your password has been changed successfully
         </Text>
       </Box>

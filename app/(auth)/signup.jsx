@@ -1,19 +1,19 @@
+import React, { useEffect, useState } from "react";
+import moment from "moment";
+import { Box } from "@/components/ui/box";
 import {
-  Box,
   Checkbox,
   CheckboxIcon,
   CheckboxIndicator,
-  CheckIcon,
-  HStack,
-  Text,
-} from "@gluestack-ui/themed";
-import moment from "moment";
+} from "@/components/ui/checkbox";
+import { CheckIcon } from "@/components/ui/checkIcon";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
 import { useFormik } from "formik";
 import { TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-import { moderateScale, scale, verticalScale } from "react-native-size-matters";
+import { scale } from "react-native-size-matters";
 
 import FlatButton from "@/components/custom/buttons/FlatButton";
 import CustomFormBox from "@/components/custom/containers/CustomFormBox";
@@ -25,8 +25,6 @@ import CustomSelect from "@/components/custom/inputs/CustomSelect";
 import { signUpValidationSchema } from "@/schema/authSchemas";
 import { clearError } from "@/redux/auth/authSlice";
 
-// const genders = ['Male', 'Female'];
-
 export default function SignUpScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -36,7 +34,6 @@ export default function SignUpScreen() {
   );
 
   const [isLoading, setIsLoading] = useState(false);
-  // const [gender, setGender] = useState('Male');
 
   useEffect(() => {
     dispatch(clearError());
@@ -62,7 +59,6 @@ export default function SignUpScreen() {
     onSubmit: async (values) => {
       setIsLoading(true);
       try {
-        // Convert date_of_birth to string format, e.g. 'YYYY-MM-DD'
         const formattedValues = {
           ...values,
           date_of_birth: moment(values.date_of_birth).format("YYYY-MM-DD"),
@@ -86,16 +82,10 @@ export default function SignUpScreen() {
 
   return (
     <SafePageContainer>
-      <Box flex={1} bg="$background" pt="$2">
+      <Box flex={1} className="bg-background pt-2">
         <GlobalHeader />
-        <Box marginVertical={"$4"}>
-          <Text
-            color="$textSecondary"
-            fontSize={moderateScale(24)}
-            textAlign="center"
-            fontWeight="$semibold"
-            lineHeight={"$2xl"}
-          >
+        <Box className="my-4">
+          <Text className="text-secondary font-semibold text-center text-xl leading-8">
             Sign up
           </Text>
         </Box>
@@ -190,27 +180,23 @@ export default function SignUpScreen() {
             }
             textContentType="oneTimeCode"
           />
-          <Box mb={"$16"} mt={verticalScale(24)}>
+          <Box className="mb-16 mt-6">
             <Checkbox
               size="md"
               aria-label="check box"
-              mb={"$20"}
+              className="mb-5"
               onChange={(e) => formik.setFieldValue("termsAccepted", e)}
             >
-              <CheckboxIndicator
-                mr="$2"
-                $checked-bg="$primary"
-                $checked={{ borderColor: "$primary" }}
-              >
+              <CheckboxIndicator className="mr-2 bg-primary border-primary">
                 <CheckboxIcon as={CheckIcon} />
               </CheckboxIndicator>
-              <Text flex={1} color="$textPrimary" fontSize={moderateScale(15)}>
+              <Text className="flex-1 text-primary text-base">
                 By creating an account, I accept the{" "}
-                <Text color="$textSecondary" underline>
+                <Text className="text-secondary underline">
                   Terms of Service
                 </Text>{" "}
                 and
-                <Text color="$textSecondary" underline>
+                <Text className="text-secondary underline">
                   {" "}
                   Privacy policy
                 </Text>{" "}
@@ -219,17 +205,12 @@ export default function SignUpScreen() {
             </Checkbox>
             <FlatButton title="Sign up" onPress={formik.handleSubmit} />
           </Box>
-          <HStack justifyContent="center" mb={"$24"}>
-            <Text color="$textPrimary">Already have an account?</Text>
+          <HStack className="justify-center mb-6">
+            <Text className="text-primary">Already have an account?</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate(SCREENS.auth.login)}
             >
-              <Text
-                ml={scale(8)}
-                textDecorationLine="underline"
-                fontWeight="600"
-                color="$textSecondary"
-              >
+              <Text className="ml-2 text-secondary font-semibold underline">
                 Sign in
               </Text>
             </TouchableOpacity>
