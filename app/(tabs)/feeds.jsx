@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { FAB } from "react-native-paper";
-import { moderateScale, scale } from "react-native-size-matters";
+import { scale } from "react-native-size-matters";
 import DashboardHeader from "@/components/custom/headers/DashboardHeader";
 import Thumbnail from "@/components/custom/image/Thumbnail";
 

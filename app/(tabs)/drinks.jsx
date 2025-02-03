@@ -7,6 +7,8 @@ import {
   WineIcon,
 } from "lucide-react-native";
 import React, { useState } from "react";
+import { Box } from "@/components/ui/box";
+import { Text } from "@/components/ui/text";
 import DashboardHeader from "@/components/custom/headers/DashboardHeader";
 import DrinksCard from "@/components/custom/cards/DrinksCard";
 import SearchFilterPanel from "@/components/custom/headers/SearchFilterPanel";
@@ -17,27 +19,27 @@ export default function DrinksScreen() {
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
 
   return (
-    <div className="bg-background flex-1">
+    <Box className="bg-background flex-1">
       <DashboardHeader />
       <SearchFilterPanel openBottomSheet={setOpenBottomSheet} />
-      <div className="px-4 overflow-auto">
+      <Box className="px-4 overflow-auto">
         {[...Array(5)].map((_, index) => (
-          <div key={index} className="flex flex-row justify-between my-2">
+          <Box key={index} className="flex flex-row justify-between my-2">
             <DrinksCard discount={true} />
             <DrinksCard discount={true} />
-          </div>
+          </Box>
         ))}
-      </div>
+      </Box>
       <CustomBottomSheet
         openModal={openBottomSheet}
         closeModal={() => setOpenBottomSheet(false)}
         modalSnapPoints={["58%"]}
         enablePanDownToClose={true}
       >
-        <div className="bg-background w-full">
-          <div className="absolute right-0 left-0 top-0 bg-background">
-            <p className="text-center mb-4">Filter</p>
-            <div className="flex flex-row flex-wrap gap-2">
+        <Box className="bg-background w-full">
+          <Box className="absolute right-0 left-0 top-0 bg-background">
+            <Text className="text-center mb-4">Filter</Text>
+            <Box className="flex flex-row flex-wrap gap-2">
               <CategoryButton />
               <CategoryButton title="Beer" icon={BeerIcon} />
               <CategoryButton title="Alc wine" icon={WineIcon} />
@@ -48,10 +50,10 @@ export default function DrinksScreen() {
               <CategoryButton title="Vodka" icon={MilkIcon} />
               <CategoryButton title="Champagne" icon={MartiniIcon} />
               <CategoryButton title="Others" icon={GlassWaterIcon} />
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       </CustomBottomSheet>
-    </div>
+    </Box>
   );
 }

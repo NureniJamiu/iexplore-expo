@@ -1,5 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
+import { Box } from "@/components/ui/box";
+import { Text } from "@/components/ui/text";
+import { Divider } from "@/components/ui/divider";
 import FilterButton from "@/components/custom/buttons/FilterButton";
 import EventCard from "@/components/custom/cards/EventCard";
 import TopSpotCard from "@/components/custom/cards/TopSpotCard";
@@ -54,13 +57,13 @@ export default function HomeScreen() {
   };
 
   return (
-    <div className="bg-background flex flex-col min-h-screen">
+    <Box className="bg-background flex flex-col min-h-screen">
       <DashboardHeader />
-      <div className="px-4">
+      <Box className="px-4">
         <CustomSearchInput placeholder="Search for..." />
-      </div>
-      <div className="overflow-auto">
-        <div className="mt-1 px-4 flex gap-2 justify-between">
+      </Box>
+      <Box className="overflow-auto">
+        <Box className="mt-1 px-4 flex gap-2 justify-between">
           <FilterButton
             title="Category"
             active={isActive.category}
@@ -71,75 +74,75 @@ export default function HomeScreen() {
             active={isActive.rating}
             onPress={handleRatingPress}
           />
-        </div>
+        </Box>
         {isActive.category && <FilterByCategory />}
         {isActive.rating && <FilterByRating />}
-        <div className="px-4">
+        <Box className="px-4">
           <SectionHeader />
-          <div className="flex overflow-x-auto space-x-4">
+          <Box className="flex overflow-x-auto space-x-4">
             <VenueCard name="Club 52" />
             <VenueCard name="Club Quilox" image={CLUB_TWO} />
             <VenueCard />
             <VenueCard />
-          </div>
-          <hr className="h-1 bg-secondary mt-6" />
-        </div>
-        <div className="px-4">
+          </Box>
+          <Divider className="h-1 bg-secondary mt-6" />
+        </Box>
+        <Box className="px-4">
           <SectionHeader title="Bars & Pubs" />
-          <div className="flex overflow-x-auto space-x-4">
+          <Box className="flex overflow-x-auto space-x-4">
             <VenueCard image={HOTEL_ONE} />
             <VenueCard image={HOTEL_TWO} />
             <VenueCard image={HOTEL_ONE} />
             <VenueCard image={HOTEL_TWO} />
-          </div>
-          <hr className="h-1 bg-secondary mt-6" />
-        </div>
-        <div className="px-4">
-          <h2 className="mb-2 text-xl font-extrabold text-textSecondary">
+          </Box>
+          <Divider className="h-1 bg-secondary mt-6" />
+        </Box>
+        <Box className="px-4">
+          <Text className="mb-2 text-xl font-extrabold text-textSecondary">
             Recommended events
-          </h2>
-          <div className="flex overflow-x-auto space-x-4">
+          </Text>
+          <Box className="flex overflow-x-auto space-x-4">
             <EventCard image={CLUB_THREE} />
             <EventCard title="MC party jump off" location="Club Quilox" />
             <EventCard image={CLUB_ONE} />
-          </div>
-          <hr className="h-1 bg-secondary mt-6" />
-        </div>
-        <div className="px-4">
+          </Box>
+          <Divider className="h-1 bg-secondary mt-6" />
+        </Box>
+        <Box className="px-4">
           <SectionHeader title="Hotels" />
-          <div className="flex overflow-x-auto space-x-4">
+          <Box className="flex overflow-x-auto space-x-4">
             <VenueCard name="Claintro Signature" image={HOTEL_ONE} />
             <VenueCard name="Cactus Restaurant" image={HOTEL_TWO} />
             <VenueCard />
             <VenueCard />
-          </div>
-          <hr className="h-1 bg-secondary mt-6" />
-        </div>
-        <div className="px-4">
+          </Box>
+          <Divider className="h-1 bg-secondary mt-6" />
+        </Box>
+        <Box className="px-4">
           <SectionHeader title="Restaurants" />
-          <div className="flex overflow-x-auto space-x-4">
+          <Box className="flex overflow-x-auto space-x-4">
             <VenueCard name="Claintro Signature" image={RESTAURANT_ONE} />
             <VenueCard name="Cactus Restaurant" image={RESTAURANT_TWO} />
             <VenueCard />
             <VenueCard />
-          </div>
-          <hr className="h-1 bg-secondary mt-6" />
-        </div>
-        <div className="px-4">
-          <h2 className="text-xl font-extrabold text-textSecondary">
+          </Box>
+          <Divider className="h-1 bg-secondary mt-6" />
+        </Box>
+        <Box className="px-4">
+          <Text className="text-xl font-extrabold text-textSecondary">
             Iexplore spots this week
-          </h2>
-          <div className="my-5 gap-3">
-            <div className="flex flex-wrap gap-3 w-full justify-between">
+          </Text>
+          <Box className="my-5 gap-3">
+            <Box className="flex flex-wrap gap-3 w-full justify-between">
               <TopSpotCard number="1" />
               <TopSpotCard number="2" image={HOTEL_TWO} />
               <TopSpotCard number="3" image={RESTAURANT_TWO} />
               <TopSpotCard number="4" image={CLUB_ONE} />
               <TopSpotCard number="5" image={RESTAURANT_TWO} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

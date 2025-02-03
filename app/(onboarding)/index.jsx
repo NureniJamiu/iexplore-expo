@@ -10,7 +10,7 @@ import { StatusBar } from "react-native";
 import { Text } from "@/components/ui/text";
 import { LogoIcon } from "@/assets/svg/LogoIcon";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { scale, verticalScale } from "react-native-size-matters";
+import { scale } from "react-native-size-matters";
 
 const image = require("@/assets/images/rect.png");
 
