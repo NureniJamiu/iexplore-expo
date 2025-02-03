@@ -50,7 +50,7 @@ export default function RootLayout() {
               {onboardingComplete ? (
                 <Stack.Screen name="(tabs)" />
               ) : (
-                <Stack.Screen name="(onboarding)" />
+                <Stack.Screen name="(onboarding)/index" />
               )}
               <Stack.Screen name="+not-found" />
             </Stack>

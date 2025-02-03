@@ -6,7 +6,7 @@ import {
   CheckboxIcon,
   CheckboxIndicator,
 } from "@/components/ui/checkbox";
-import { CheckIcon } from "@/components/ui/checkIcon";
+import { CheckIcon } from "lucide-react-native";
 import { HStack } from "@/components/ui/hstack";
 import { Text } from "@/components/ui/text";
 import { useFormik } from "formik";
