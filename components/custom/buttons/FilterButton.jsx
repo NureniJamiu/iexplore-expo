@@ -1,7 +1,6 @@
 import React from "react";
 import { ChevronDownIcon } from "@/components/ui/icon";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
-import { StyleSheet } from "react-native";
 import { moderateScale } from "react-native-size-matters";
 
 const FilterButton = ({
@@ -33,5 +32,3 @@ const FilterButton = ({
 };
 
 export default FilterButton;
-
-const styles = StyleSheet.create({});
